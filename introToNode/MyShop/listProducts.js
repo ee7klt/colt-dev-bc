@@ -5,7 +5,7 @@ const faker = require('faker');
 const fakeProducts = (n) => {
    if (n == 0) return 
    else {
-       console.log(faker.fake("{{commerce.productName}},{{commerce.price}}"));
+       console.log(faker.fake("{{commerce.productName}} - ${{commerce.price}}"));
        fakeProducts(n-1);
    }
 };
