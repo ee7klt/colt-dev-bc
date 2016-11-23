@@ -1,4 +1,12 @@
 
+<% include partials/header.ejs %>
+    
+    
 <p>Hello <%= name %></p>
 
-<%= data %>
+
+<ul>
+ <% data.forEach( (e) => { %>
+     <li> <%=e.item%> -- <%= e.price %> </li>
+ <% }) %>
+ </ul>

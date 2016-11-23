@@ -3,8 +3,10 @@
 const express = require('express');
 const app = express();
 
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 app.get('/', function(req,res) {
-    res.render("home.ejs");
+    res.render("home");
 })
 
 app.get('/posts', function(req, res) {
@@ -18,12 +20,12 @@ app.get('/posts', function(req, res) {
 
 app.get('/fallinlovewith/:thing', function(req,res) {
     var thing = req.params.thing;
-    res.render("love.ejs",{thing: thing});
+    res.render("love",{thing: thing});
 })
 
 
 app.get('*', function(req, res) {
-    res.render("404.ejs");
+    res.render("404");
 })
 
 
