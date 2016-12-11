@@ -2,24 +2,42 @@
 const express=require('express')
 const app = express();
 const request = require('request')
-const marked = require('marked')
+const bodyParser = require('body-parser');
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
+app.use(bodyParser.urlencoded({extended: true}));
 
-console.log(marked('I am using __markdown__.'))
 
 
+let endpoint = 'http://www.omdbapi.com/?s='
 
 app.get('/', function(req,res) {
     res.send("home");
 })
 
+
+
+app.get('/search',function(req,res) {
+res.render('search')
+console.log('search page')
+  //res.redirect('/results');
+})
+
+app.post('/requestKeyword', function(req,res) {
+  console.log('requestKeyword POST route reached')
+  console.log(req.body.keyword)
+  endpoint=endpoint+req.body.keyword
+  res.redirect('/results')
+})
+
+
 app.get('/results', function(req,res) {
-  const endpoint = "http://www.omdbapi.com/?s=peter";
   request(endpoint, function(error, response, body) {
+    if(!error && response.statusCode == 200) {
     const data = JSON.parse(body)
     res.render('results',{data: data["Search"]})
+  } else console.log('error fetching data')
   })
 })
 

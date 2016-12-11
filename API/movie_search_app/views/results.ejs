@@ -1,8 +1,8 @@
-
+<h1>List of movies</h1>
 <ul>
 <% data.forEach((elem) => { %>
   <li>
-    Title: <%= elem["Title"] %>
+     <%= elem["Title"] %> (<%= elem["Year"] %>)
   </li>
 <% }) %>
 
