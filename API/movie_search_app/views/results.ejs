@@ -2,6 +2,7 @@
 <ul>
 <% data.forEach((elem) => { %>
   <li>
+    <img src= <%= elem["Poster"] %> height="50px" >
      <%= elem["Title"] %> (<%= elem["Year"] %>)
   </li>
 <% }) %>
