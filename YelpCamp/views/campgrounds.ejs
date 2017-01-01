@@ -1,7 +1,19 @@
 <% include partials/header %>
-<ul>
-<% campgrounds.forEach(x => { %>
-<li> <%= x %> </li>
 
+<body clas="preload">
+<div class="nav">
+<a href="/"><i class="material-icons">arrow_back</i></a>
+
+</div>
+
+<div class="container">
+<% campgrounds.forEach(x => { %>
+  <div>
+<div class="campground">
+<img src = <%=x.image%> height: '200px' >
+<h2 class="campgroundName"><%= x.name %></h2>
+ </div>
+</div>
 <% }) %>
-</ul>
+</div>
+</body>
