@@ -3,6 +3,15 @@
 body {
   font-family: 'Open Sans', sans-serif;
 }
+input {
+   height: 50px;
+}
+ input[type=submit] {
+   border: none;
+   background-color: rgba(255,128,128,1);
+   font-size: 1.4em;
+
+ }
 
 .preload * {
   transition: none !important;
@@ -24,15 +33,20 @@ body {
   top: 20px;
   left: 20px;
 }
+
+.hidden {
+  display: none;
+}
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation-duration: 5s;
+  margin-top: 20px;
+  /*animation-duration: 5s;
     transition-timing-function: ease-in;
     animation-fill-mode: both;
-   animation-name: fadeIn;
+   animation-name: fadeIn;*/
 
 }
 

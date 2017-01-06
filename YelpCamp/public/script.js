@@ -1,5 +1,10 @@
-const campgroundName = getElementsByClassName('campgroundName')[0];
 
-window.onload = function() {
-  campgroundName.classList.remove('preload')
+'use strict'
+var addCamp = document.getElementById('addCamp')
+
+
+const handleAdd = () => {
+  console.log('add campground')
+  addCamp.classList.remove('hidden')
+
 }
