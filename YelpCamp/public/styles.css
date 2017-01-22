@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
+* {
+
+margin: 0;
+
+padding: 0;
+
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -28,9 +36,38 @@ input {
   }
 }
 
+nav > ul {
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+  background: rgba(200,0,200,1);
+  font-size: 20px;
+  color: rgba(100,0,100,1);
+text-shadow: 2px 2px 6px rgba(255,255,255,0.2);
+justify-content: flex-end;
+}
+
+nav > ul > li {
+  padding: 0px 3px 0px 3px;
+}
+
+.yelpcamp {
+  margin-right: auto;
+}
+
+.search {
+    line-height: 0px;
+
+  padding: 0;
+  align-self: center;
+
+}
+
+
 .nav {
   position: absolute;
-  top: 20px;
+  top: 50px;
   left: 20px;
 }
 
@@ -53,10 +90,12 @@ input {
 li {
   list-style: none;
 }
-
+.campgrounds {
+  display: flex;
+  flex-direction: row;
+}
 .campground {
   position: relative;
-  width: 100%;
   margin-bottom: 20px;
   height: 200px;
 }
