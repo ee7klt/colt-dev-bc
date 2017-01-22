@@ -19,9 +19,10 @@ var camp = mongoose.model('camp', campSchema);
 let campgrounds = [
   {name: 'Ootoro Creek',  image:"http://lorempixel.com/400/200/"},
   {name: 'Hamachi Mountain',  image:"http://lorempixel.com/400/200/"},
-  {name: 'Uni River', image:"http://lorempixel.com/400/200/"}];
+  {name: 'Uni River', image:"http://lorempixel.com/400/200/"}
+];
 
-campgrounds.forEach(x =>
+campgrounds.forEach(x => {
   camp.find({name: x.name}, function(absent, present) {
     if (absent) {
       camp.create(x,
@@ -31,6 +32,8 @@ campgrounds.forEach(x =>
       })
     }
   })
+}
+  )
 
 
 
@@ -45,8 +48,15 @@ app.get('/campgrounds', function(req,res) {
 })
 
 app.post('/campgrounds', function(req,res) {
-  campgrounds.push({name:req.body.camp, image:"http://lorempixel.com/400/200/"})
-
+  //campgrounds.push({name:req.body.camp, image:"http://lorempixel.com/400/200/"})
+ camp.create({name:req.body.camp, image:"http://lorempixel.com/400/200/"}, function(err,res) {
+   if(err) {
+     console.log('error creating new document')
+   } else {
+     console.log('new document created')
+     console.log(res)
+   }
+ })
   // redirect defaults as GET.
   // so even though we have two routes with campgrounds
   // will choose teh GET.
