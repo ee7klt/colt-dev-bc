@@ -69,6 +69,7 @@ nav > ul > li {
   position: absolute;
   top: 50px;
   left: 20px;
+  //border: 2px red solid;
 }
 
 .hidden {
@@ -79,7 +80,8 @@ nav > ul > li {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 50px;
+  //border: 2px green solid;
   /*animation-duration: 5s;
     transition-timing-function: ease-in;
     animation-fill-mode: both;
@@ -90,14 +92,18 @@ nav > ul > li {
 li {
   list-style: none;
 }
+
+
+
 .campgrounds {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 .campground {
   position: relative;
-  margin-bottom: 20px;
-  height: 200px;
+  margin: 10px 10px 10px 10px;
+
 }
 
 .campgroundName {
@@ -107,5 +113,11 @@ li {
   color: white;
   background: rgba(0,0,0,.7);
   padding: 5px;
+  font-size: 1em;
 
+}
+
+img {
+  width: 300px;
+  height: 150px;
 }
