@@ -9,10 +9,12 @@
   <div class="container">
 
     <div class="hidden" id="addCamp">
-      <h2>add camp</h2>
+      <h2>Create a New Campground</h2>
       <form action="/campgrounds" method="POST">
-        <input placeholder="New Campground Name" name="camp" type="text" />
-        <input type="submit" value="Add Campground!" />
+        <input placeholder="Campground Name" name="camp" type="text" />
+        <input placeholder="Image" name="image" type="text" />
+        <input placeholder="Description" name="desc" type="text" />
+        <input type="submit" value="Submit!"/>
       </form>
     </div>
     <div class="campgrounds">
@@ -22,9 +24,7 @@
           <img src = <%=x.image%> height: '100px' >
           </a>
           <h2 class="campgroundName"><%= x.name %></h2>
-          <p>
-            <%=x.description%>
-          </p>
+
         </div>
       <% }) %>
     </div>

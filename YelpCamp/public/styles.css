@@ -11,14 +11,33 @@ padding: 0;
 body {
   font-family: 'Open Sans', sans-serif;
 }
-input {
-   height: 50px;
+
+#addCamp {
+
+flex-direction: column;
+align-items: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+
+}
+input[type=text] {
+   height: 30px;
+   font-size: 1em;
+   margin: 4px 0 0 0;
+   width: 100%;
 }
  input[type=submit] {
    border: none;
-   background-color: rgba(255,128,128,1);
-   font-size: 1.4em;
-
+   background-color: #20a0a0;
+   color: #ffffff;
+   height: 30px;
+   margin: 4px 0 0 0;
+   font-size: 1.1em;
+   width: 80%;
  }
 
 .preload * {
@@ -75,6 +94,10 @@ nav > ul > li {
 .hidden {
   display: none;
 }
+.flex {
+  display: flex;
+}
+
 .container {
   display: flex;
   flex-direction: column;

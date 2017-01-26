@@ -85,11 +85,16 @@ app.get('/campgrounds', function(req,res) {
 // CREATE: add new campground to database
 app.post('/campgrounds', function(req,res) {
   //campgrounds.push({name:req.body.camp, image:"http://lorempixel.com/400/200/"})
-  camp.create({name:req.body.camp, image:"http://lorempixel.com/200/100/", description:"description here"}, function(err,res) {
+  var name = req.body.camp;
+  var image = req.body.image;
+  var desc = req.body.desc;
+  var newCamp = {name: name, image: image, description: desc};
+  camp.create(newCamp, function(err,res) {
     if(err) {
       console.log('error creating new document')
     } else {
       console.log('new document created')
+      console.log(res)
       //console.log(res)
     }
   })
@@ -103,11 +108,11 @@ app.post('/campgrounds', function(req,res) {
 // SHOW: shows more info about 1 campground
 app.get('/campgrounds/:id', function(req, res) {
   var id = req.params.id;
-  camp.find({_id: mongoose.Types.ObjectId(id)}, function(err, campground) {
+  camp.findById(id, function(err, campground) {
     if (err) {
       console.log(id + ' not found.')
     } else {
-      console.log('found route for ' + id)
+      console.log('found route for ' + campground)
       res.render('show', {campground: campground});
     }
   })
