@@ -39,7 +39,7 @@ blogModel.create(
 
 
 app.get('/', function(req,res) {
-    res.send("home");
+    res.redirect("blogs");
 })
 
 // RESTFUL ROUTES
@@ -49,7 +49,7 @@ app.get('/blogs', function(req, res) {
     if (err) {
       console.log('cannot find in database')
     } else {
-      res.render("blogs", {blogs: blogs});
+      res.render("index", {blogs: blogs});
     }
   })
 

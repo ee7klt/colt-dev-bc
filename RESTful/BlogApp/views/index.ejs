@@ -1,0 +1,17 @@
+<% include partials/header %>
+
+<h1>My Blogs</h1>
+<% blogs.forEach((x) => { %>
+  <div>
+    <h3><%= x.title %></h3>
+    <img src=<%= x.image %>>
+    <p>
+      <%= x.body %>
+    </p>
+  </div>
+
+<br />
+<% }) %>
+
+
+<% include partials/footer %>
