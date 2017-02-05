@@ -55,6 +55,16 @@ app.get('/blogs', function(req, res) {
 
 })
 // New
+app.get('/blogs/new', function(req, res) {
+  blogModel.find({}, (err,blogs) => {
+    if (err) {
+      console.log('cannot find in database')
+    } else {
+      res.render("newPost", {blogs: blogs});
+    }
+  })
+
+})
 // Create
 // Show
 // Edit
