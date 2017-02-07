@@ -1,1 +1,23 @@
-<h1>form to add new post</h1>
+
+<% include partials/header %>
+<h1>Add new post</h1>
+
+<form action="/newPost" method="POST" class="ui form">
+
+<div class="field">
+    <label>Title</label>
+  <input placeholder="My Awesome Blog Post" name="title" type="text" />
+</div>
+
+<div class="field">
+    <label>Image URL</label>
+<input placeholder="http://images.com/myimage.jpg" name="image" type="text" />
+</div>
+<div class="field">
+      <label>Body</label>
+      <textarea placeholder="My Awesome Content" name="body" type="text"></textarea>
+</div>
+<button class="ui button" type="submit">Add Post</button>
+</form>
+
+<% include partials/footer %>
