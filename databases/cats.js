@@ -26,23 +26,23 @@ var catModel = mongoose.model('cat', catSchema)
 //   }
 // });
 
-catModel.create({
-  name: "one less",
-  age: 14
-}, function(err, res) {
-  if (err) {
-    console.log("oh no!")
-  } else {
-    console.log(res)
-  }
-})
+// catModel.create({
+//   name: "one less",
+//   age: 14
+// }, function(err, res) {
+//   if (err) {
+//     console.log("oh no!")
+//   } else {
+//     console.log(res)
+//   }
+// })
 
 // retrieve all cats from db
-catModel.find({}, function(err, res) {
+catModel.find({name: ''}, function(err, res) {
   if(err) {
     console.log('oh no!')
   } else {
-    console.log('all the cats')
+    console.log('found cat')
     console.log(res)
   }
 })
