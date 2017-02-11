@@ -65,13 +65,14 @@ app.post('/blogs', function(req,res) {
     //console.log(req.body.title)
     blogModel.create(
       req.body.blog,
-      (err, res) => {
+      (err, blog) => {
         if (err) {
           console.log(req.body.blog)
           console.log('error insertin in to BlogApp')
           res.render('new')
         } else {
           //console.log('success creating new blog')
+          console.log(blog)
           res.redirect("/");
         }
       })
