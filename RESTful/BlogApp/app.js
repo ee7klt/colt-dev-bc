@@ -82,6 +82,19 @@ app.post('/blogs', function(req,res) {
 
 
 // Show
+app.get('/blogs/:id', function(req,res) {
+  const id = req.params.id;
+  console.log(req.params)
+
+  blogModel.find({"_id":id}, (err,blog) => {
+    if (err) {
+      console.log('cannot find in database')
+    } else {
+      console.log(blog)
+      res.render("show", {blog: blog[0]});
+    }
+  })
+})
 // Edit
 // Update
 // Destroy
