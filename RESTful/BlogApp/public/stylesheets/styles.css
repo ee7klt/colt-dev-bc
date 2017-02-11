@@ -1,3 +1,15 @@
 i.icon {
   font-size: 2em;
 }
+.container.main {
+  margin-top: 6em;
+}
+
+
+footer {
+  margin-top: 6em;
+  padding-bottom: 2em;
+  text-align: center;
+  //border: red 2px solid;
+
+}

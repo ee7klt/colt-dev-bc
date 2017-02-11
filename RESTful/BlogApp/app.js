@@ -31,7 +31,7 @@ blogModel.create(
   {title: 'My first blog', body: 'This is my first blog'},
   (err, res) => {
     if (err) {
-      console.log('error insertin in to BlogApp')
+      console.log('error inserting in to BlogApp')
     } else console.log('success inserting in to BlogApp')
   })  // insert OBJ
  // find MATCH_OBJ
@@ -58,26 +58,25 @@ app.get('/blogs', function(req, res) {
 // New -- Show new blog post form (GET)
 // newPost.ejs
 app.get('/blogs/new', function(req, res) {
-  blogModel.find({}, (err,blogs) => {
-    if (err) {
-      console.log('cannot find in database')
-    } else {
-      res.render("newPost");
-    }
-  })
-
+      res.render("new");
 })
 // Create - create new post then redirect somewhere (POST)
-app.post('/newPost', function(req,res) {
+app.post('/blogs', function(req,res) {
     //console.log(req.body.title)
     blogModel.create(
-      {title: req.body.title, body: req.body.body},
+      req.body.blog,
       (err, res) => {
         if (err) {
+          console.log(req.body.blog)
           console.log('error insertin in to BlogApp')
-        } else console.log('success inserting in to BlogApp')
+          res.render('new')
+        } else {
+          //console.log('success creating new blog')
+          res.redirect("/");
+        }
       })
-    res.redirect("/");
+
+
 })
 
 
