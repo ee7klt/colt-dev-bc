@@ -2,13 +2,23 @@
 
 <div class="ui main text container segment">
 <div class="ui huge header">
-  Showtime
+  <%= blog.title %>
 </div>
-  <%= blog %>
+<div class="ui top attached ">
+  <div class="item">
+<img class="ui centered rounded image" src=../<%= blog.image %>>
+<div class="content">
+  <span><%= blog.created.toDateString() %></span>
+</div>
+<div class="description">
+  <p>
+    <%= blog.body %>
+  </p>
+</div>
+  </div>
+</div>
 
-<h3><%= blog.title %></h3>
-<img src=<%= blog.image %>>
-<%= blog.body %>
+
 </div>
 
 <% include partials/footer %>

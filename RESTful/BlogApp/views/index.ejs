@@ -6,8 +6,9 @@
     <h3><%= x.title %></h3>
     <img src=<%= x.image %>>
     <p>
-      <%= x.body %>
+      <%= x.body.substring(0,99) %>...
     </p>
+    <a href="/blogs/<%= x._id%>">Read more ...</a>
   </div>
 
 <br />
