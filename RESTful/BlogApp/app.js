@@ -2,8 +2,10 @@
 const express=require('express')
 const app = express();
 const marked = require('marked')
+const methodOverride = require('method-override')
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
+app.use(methodOverride("_method"))
 
 
 
@@ -158,9 +160,28 @@ app.get('/blogs/:id/edit', function(req, res) {
 })
 
 
-
-
 // Update
+app.put('/blogs/:id', function(req, res) {
+
+  const blog = req.body.blog
+  const id = req.params.id
+
+  // update the database entry of corresponding blog
+  const query = {'_id': id}
+  blogModel.findOneAndUpdate(query, blog, function(err, doc) {
+    if (err) {
+      console.log('UPDATE: cannot update')
+      res.redirect('/blogs/'+id)
+    }
+    else {
+      console.log('UPDATE: successfully updated')
+      res.redirect('/blogs/'+id)
+    }
+  })
+
+
+})
+
 // Destroy
 
 

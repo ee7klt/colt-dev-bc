@@ -13,6 +13,7 @@
     "ejs": "^2.5.5",
     "express": "^4.14.1",
     "marked": "^0.3.6",
+    "method-override": "^2.3.7",
     "mongoose": "^4.8.1",
     "pygmentize-bundled": "^2.3.0"
   },
