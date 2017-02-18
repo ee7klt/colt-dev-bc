@@ -15,6 +15,15 @@
     <%= blog.body %>
   </p>
 </div>
+<div class="ui divider">
+
+</div>
+<div>
+  <button class="ui primary basic button" onclick="location.href='/blogs/<%= blog.id%>/edit'" type="button">Edit</button>
+  <form action="/blogs/<%= blog.id %>?_method=DELETE" method="POST">
+    <button class="ui primary basic button" type="submit">Delete</button>
+  </form>
+</div>
   </div>
 </div>
 

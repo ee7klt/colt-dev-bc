@@ -183,7 +183,19 @@ app.put('/blogs/:id', function(req, res) {
 })
 
 // Destroy
-
+app.delete('/blogs/:id', function(req, res) {
+  const id = req.params.id
+  const query = {'_id': id}
+  blogModel.find(query).remove(function(err, doc) {
+    if (err) {
+      console.log('unable to delete')
+      res.redirect('/')
+    } else {
+      console.log('successfully deleted')
+      res.redirect('/')
+    }
+  })
+})
 
 //local
 app.listen(3030, function() {
