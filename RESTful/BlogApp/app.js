@@ -1,12 +1,16 @@
 'use strict'
 const express=require('express')
 const app = express();
+const bodyParser = require('body-parser');
 const marked = require('marked')
 const methodOverride = require('method-override')
+const expressSanitizer = require('express-sanitizer')
+
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(methodOverride("_method"))
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer())
 
 
 // MARKED
@@ -47,8 +51,7 @@ app.get('/marked', function(req,res) {
 })
 
 // FORMS
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: true}));
+
 // app.post(‘/ENDPOINT', function(req,res) {
 //     console.log(req.body.KEY)
 //     res.redirect(“/friends");
@@ -105,7 +108,7 @@ app.get('/blogs/new', function(req, res) {
 })
 // Create - create new post then redirect somewhere (POST)
 app.post('/blogs', function(req,res) {
-
+  req.body.blog.body = req.sanitize(req.body.blog.body)
   if (req.body.blog.image == '') {
     req.body.blog.image = 'placeholder.jpg'
   }
@@ -165,7 +168,7 @@ app.put('/blogs/:id', function(req, res) {
 
   const blog = req.body.blog
   const id = req.params.id
-
+  blog.body = req.sanitize(blog.body)
   // update the database entry of corresponding blog
   const query = {'_id': id}
   blogModel.findOneAndUpdate(query, blog, function(err, doc) {

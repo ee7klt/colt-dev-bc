@@ -20,10 +20,11 @@
 </div>
 <div>
   <button class="ui primary basic button" onclick="location.href='/blogs/<%= blog.id%>/edit'" type="button">Edit</button>
-  <form action="/blogs/<%= blog.id %>?_method=DELETE" method="POST">
-    <button class="ui primary basic button" type="submit">Delete</button>
+  <form style="display: inline;" action="/blogs/<%= blog.id %>?_method=DELETE" method="POST">
+    <button class="ui red basic button" type="submit">Delete</button>
   </form>
 </div>
+
   </div>
 </div>
 
