@@ -6,49 +6,56 @@ var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/blog_demo');
 mongoose.Promise = require('bluebird');
 
-
-// USER - email, name
-var userSchema = new mongoose.Schema({
-  email: String,
-  name: String
-});
-
-var User = mongoose.model("User", userSchema);
-
-
 // POST - title, content
 var postSchema = mongoose.Schema({
   title: String,
   content: String
 })
+// USER - email, name
+var userSchema = new mongoose.Schema({
+  email: String,
+  name: String,
+  posts: [postSchema]
+});
+
+var User = mongoose.model("User", userSchema);
+
+
+
 
 var Post = mongoose.model("Post", postSchema);
 
 
 var newUser = new User({
-  email: "kltah1@gmail.com",
-  name: "Alex"
+  email: "richard@feynman.com",
+  name: "Dick"
 })
 
-var newPost = new Post({
-  title: "excelsior parco capri",
-  content: "an awesome experience!"
+newUser.posts.push({
+  title: "Quantum Electrodynamics",
+  content: "The theory of light and matter"
 })
 
-// var promiseSave = newUser.save()
-// promiseSave.then((user) => {
-//   console.log(user)
+// var newPost = new Post({
+//   title: "excelsior parco capri",
+//   content: "an awesome experience!"
 // })
-// .catch((err) => {
-//   console.log('error saving')
-// })
-var promiseSavePost = newPost.save()
-promiseSavePost.then((post) => {
-  console.log(post)
+
+var promiseSave = newUser.save()
+promiseSave.then((user) => {
+  console.log(user)
 })
 .catch((err) => {
   console.log('error saving')
 })
+
+// var promiseSavePost = newPost.save()
+// promiseSavePost.then((post) => {
+//   console.log(post)
+// })
+// .catch((err) => {
+//   console.log('error saving')
+// })
 
 
 
