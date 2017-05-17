@@ -5,25 +5,8 @@
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/blog_demo_2');
 mongoose.Promise = require('bluebird');
-
-// POST - title, content
-var postSchema = mongoose.Schema({
-  title: String,
-  content: String
-})
-var Post = mongoose.model("Post", postSchema);
-
-// USER - email, name
-var userSchema = new mongoose.Schema({
-  email: String,
-  name: String,
-  posts: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Post"
-  }]
-});
-
-var User = mongoose.model("User", userSchema);
+var Post = require('./model/post');
+var User = require('./model/user');
 
 // create the user
 // User.create({
