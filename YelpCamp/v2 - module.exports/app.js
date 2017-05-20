@@ -7,16 +7,20 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/campsDB');
-var camp = require('.model/camp');
+var camp = require('./model/camp');
+var comment = require('./model/comment');
+var seedDB = require('./seeds');
 
 
 
+seedDB();
 
-let campgrounds = [
-  {name: 'Ootoro Creek',  image:"http://lorempixel.com/100/100/", description:"Smooth and fatty"},
-  {name: 'Hamachi Mountain',  image:"http://lorempixel.com/200/100/", description: "bouncy"},
-  {name: 'Uni River', image:"http://lorempixel.com/200/100/", description:"tangy"}
-];
+// using seed.js instead now.
+// let campgrounds = [
+//   {name: 'Ootoro Creek',  image:"http://lorempixel.com/100/100/", description:"Smooth and fatty"},
+//   {name: 'Hamachi Mountain',  image:"http://lorempixel.com/200/100/", description: "bouncy"},
+//   {name: 'Uni River', image:"http://lorempixel.com/200/100/", description:"tangy"}
+// ];
 
 // camp.create(campgrounds[0], (err,res) => {
 //   if (err) {
@@ -27,28 +31,32 @@ let campgrounds = [
 //   }
 // })
 
-campgrounds.forEach(x => {
-  //console.log('looping over campgrounds')
-  camp.find({name: x.name}, function(err, res) {
-    if (err) {
-      console.log('error querying collection')
-    } else {
-      if (res.length === 0) {
-        console.log('campground '+x.name+' absent. creating ...')
-        camp.create(x,
-          function(err,res) {
-            if (err) {console.log('unable to insert object in to db') }
-            else {console.log('successfully inserted' + res)}
-          })
-        }
-      else {
-        console.log('campground '+x.name+' already present. skipping')
-        console.log(res.length)
-      }
-      }
-    })
-  }
-)
+// seed the database with campgrounds
+// if campground already present in db, skip inserting it.
+// commenting this out in yelpcamp:seeding the DB
+// because we'll use seeds.js instead to initizlize db.
+// campgrounds.forEach(x => {
+//   //console.log('looping over campgrounds')
+//   camp.find({name: x.name}, function(err, res) {
+//     if (err) {
+//       console.log('error querying collection')
+//     } else {
+//       if (res.length === 0) {
+//         console.log('campground '+x.name+' absent. creating ...')
+//         camp.create(x,
+//           function(err,res) {
+//             if (err) {console.log('unable to insert object in to db') }
+//             else {console.log('successfully inserted' + res)}
+//           })
+//         }
+//       else {
+//         console.log('campground '+x.name+' already present. skipping')
+//         console.log(res.length)
+//       }
+//       }
+//     })
+//   }
+// )
 
 
 
