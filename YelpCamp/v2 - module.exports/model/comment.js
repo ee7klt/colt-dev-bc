@@ -1,10 +1,10 @@
 
 var mongoose = require('mongoose')
 
-// camp Schema
-var commentSchema = new mongoose.Schema({
+// comment Schema
+module.exports = new mongoose.Schema({
   user: String,
   comment: String
 })
 
-module.exports = mongoose.model('comment', commentSchema);
+//module.exports = mongoose.model('comment', commentSchema);

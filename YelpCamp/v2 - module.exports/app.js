@@ -8,7 +8,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/campsDB');
 var camp = require('./model/camp');
-var comment = require('./model/comment');
 var seedDB = require('./seeds');
 
 
