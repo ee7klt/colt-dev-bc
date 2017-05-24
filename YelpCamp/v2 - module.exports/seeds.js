@@ -20,7 +20,7 @@ camp.remove({}, (err) => {
 
 // add a few campgrounds
 let campgrounds = [
-  {name: 'Ootoro Creek',  image:"http://lorempixel.com/100/100/", description:"Smooth and fatty", comments: [{user:'ee7klt', comment:'js rocks'}]},
+  {name: 'Ootoro Creek',  image:"http://lorempixel.com/100/100/", description:"Smooth and fatty", comments: [{user:'ee7klt', comment:'js rocks'},{user:'joe', comment:'python rocks'}]},
   {name: 'Hamachi Mountain',  image:"http://lorempixel.com/200/100/", description: "bouncy", comments: []},
   {name: 'Uni River', image:"http://lorempixel.com/200/100/", description:"tangy"}
 ];
