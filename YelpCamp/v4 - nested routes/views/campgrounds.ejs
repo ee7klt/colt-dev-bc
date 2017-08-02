@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+<body>
+  <div class="nav">
+    <a href="/"><i class="material-icons">arrow_back</i></a>
+    <a href="#" onclick="handleAdd()"><i class="material-icons">add</i></a>
+  </div>
+
+  <div class="container">
+
+    <div class="hidden" id="addCamp">
+      <h2>Create a New Campground</h2>
+      <form action="/campgrounds" method="POST">
+        <input placeholder="Campground Name" name="camp" type="text" />
+        <input placeholder="Image" name="image" type="text" />
+        <input placeholder="Description" name="desc" type="text" />
+        <input type="submit" value="Submit!"/>
+      </form>
+    </div>
+    <div class="campgrounds">
+      <% campgrounds.forEach(x => { %>
+        <div class="campground">
+          <a href= '/campgrounds/<%= x.id %>' >
+          <img src = <%=x.image%> height: '100px' >
+          </a>
+          <h2 class="campgroundName"><%= x.name %></h2>
+
+        </div>
+      <% }) %>
+    </div>
+  </div>
+    <script src="/script.js"></script>
+  </body>

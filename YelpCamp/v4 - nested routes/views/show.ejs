@@ -1,0 +1,17 @@
+<% include partials/header %>
+<body>
+
+  <h1><%= campground.name %></h1>
+  <img src = <%=campground.image%>  >
+  <p>
+    <%= campground.description %>
+  </p>
+  <p>
+    <% campground.comments.forEach(x => { %>
+      <p>
+        <%= x.user %> says:   <%= x.comment %>
+      </p>
+
+          <% }) %>
+  </p>
+</body>
