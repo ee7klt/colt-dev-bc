@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 <body>
   <div class="nav">
@@ -21,11 +21,11 @@
       <% campgrounds.forEach(x => { %>
         <div class="campground">
           <a href= '/campgrounds/<%= x.id %>' >
-          <img src = <%=x.image%> height: '100px' >
+          <img src = <%=x.image%>  >
           </a>
-          <h2 class="campgroundName"><%= x.name %></h2>
-
+            <h2 class="campgroundName"><%= x.name %></h2>
         </div>
+
       <% }) %>
     </div>
   </div>

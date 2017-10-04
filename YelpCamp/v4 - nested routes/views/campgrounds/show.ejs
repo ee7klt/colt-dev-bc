@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+<body>
+  <div class = 'show'>
+
+
+    <h1><%= campground.name %></h1>
+    <div class='container-desc'>
+      <div>
+        <img src = <%=campground.image%>  >
+      </div>
+      <div>
+        <p class='description'>
+          <%- campground.description %>
+        </p>
+      </div>
+
+
+    </div>
+    <div class="comments">
+      <h2>Comments</h2>
+      <p>
+        <% campground.comments.forEach(x => { %>
+          <p>
+            <%= x.user %> says:   <%= x.comment %>
+          </p>
+
+          <% }) %>
+        </p>
+        <form action="/campgrounds/<%= campground.id %>/comments/new">
+          <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+            Add comment
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </body>
+  <% include ../partials/footer %>

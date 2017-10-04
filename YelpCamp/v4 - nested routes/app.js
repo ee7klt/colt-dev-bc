@@ -12,7 +12,7 @@ var seedDB = require('./seeds');
 
 
 
-seedDB();
+//seedDB();
 
 // using seed.js instead now.
 // let campgrounds = [
@@ -74,7 +74,7 @@ app.get('/campgrounds', function(req,res) {
     } else {
       console.log('retrieved campgrounds')
       //console.log(campgrounds)
-      res.render("campgrounds", {campgrounds: campgrounds})
+      res.render("campgrounds/campgrounds", {campgrounds: campgrounds})
     }
   })
 
@@ -100,7 +100,7 @@ app.post('/campgrounds', function(req,res) {
   // redirect defaults as GET.
   // so even though we have two routes with campgrounds
   // will choose teh GET.
-  res.redirect('/campgrounds')
+  res.redirect('campgrounds/campgrounds')
 })
 
 
@@ -111,14 +111,50 @@ app.get('/campgrounds/:id', function(req, res) {
     if (err) {
       console.log(id + ' not found.')
     } else {
-      console.log('found route for ' + campground)
-      res.render('show', {campground: campground});
+      //console.log('found route for ' + campground)
+      res.render('campgrounds/show', {campground: campground});
     }
   })
 
 
 })
 
-app.listen(3000, function() {
-  console.log('server started!');
+
+// +++++++++++++++++
+// COMMENT ROUTES
+// +++++++++++++++++
+
+// NEW CAMP COMMENT: form to add comment about a particular campground
+app.get('/campgrounds/:id/comments/new', function(req,res) {
+  var id = req.params.id;
+  camp.findById(id, (err, campground) => {
+    if (err) {
+      console.log('unable to retrieve camground for comment')
+    } else {
+      console.log('retrieved campground for comment')
+      res.render("comments/new", {campground: campground})
+    }
+  })
+
+})
+
+// CREATE NEW CAMP COMMENT
+app.post('/campgrounds/:id/comments', function(req, res) {
+  console.log(req.body)
+  var id = req.params.id
+  camp.findById(id, (err, campground) => {
+    if (err) {
+      console.log('unable to retrieve camground for creating comment')
+    } else {
+      console.log('adding comment to camp ... ')
+      console.log(campground.comments)
+      res.redirect('/campgrounds/'+id)
+    }
+  })
+
+})
+
+
+app.listen(3300, function() {
+  console.log('server started at port 3300!');
 })

@@ -1,146 +1,225 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-* {
-
-margin: 0;
-
-padding: 0;
-
-}
-
-body {
-  font-family: 'Open Sans', sans-serif;
-}
-
-#addCamp {
-
-flex-direction: column;
-align-items: center;
-}
-form {
+.new-container > form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 80%;
-
+  margin-left: 20px;
 }
-input[type=text] {
-   height: 30px;
-   font-size: 1em;
-   margin: 4px 0 0 0;
-   width: 100%;
-}
- input[type=submit] {
-   border: none;
-   background-color: #20a0a0;
-   color: #ffffff;
-   height: 30px;
-   margin: 4px 0 0 0;
-   font-size: 1.1em;
-   width: 80%;
- }
-
-.preload * {
-  transition: none !important;
+.new-container button {
+  width: 80px;
 }
 
+.portfolio-header {
+  position: relative;
+  background-image: url(images/header-bg.jpg);
+  background-size: 100%;
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
-nav > ul {
-  height: 40px;
-  line-height: 40px;
-  display: flex;
-  flex-direction: row;
-  background: rgba(200,0,200,1);
-  font-size: 20px;
-  color: rgba(100,0,100,1);
-text-shadow: 2px 2px 6px rgba(255,255,255,0.2);
-justify-content: flex-end;
-}
-
-nav > ul > li {
-  padding: 0px 3px 0px 3px;
-}
-
-.yelpcamp {
-  margin-right: auto;
-}
-
-.search {
-    line-height: 0px;
-
+.portfolio-header .mdl-layout__header-row {
   padding: 0;
-  align-self: center;
-
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-
-.nav {
-  position: absolute;
-  top: 50px;
-  left: 20px;
-  //border: 2px red solid;
+.mdl-layout__title {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 300;
 }
 
-.hidden {
+.is-compact .mdl-layout__title span {
   display: none;
 }
-.flex {
-  display: flex;
+
+.portfolio-logo-row {
+  min-height: 200px;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-  //border: 2px green solid;
-  /*animation-duration: 5s;
-    transition-timing-function: ease-in;
-    animation-fill-mode: both;
-   animation-name: fadeIn;*/
-
+.is-compact .portfolio-logo-row {
+  min-height: auto;
 }
 
-li {
-  list-style: none;
+.portfolio-logo {
+  background: url(images/logo.png) 50% no-repeat;
+  background-size: cover;
+  height: 150px;
+  width: 150px;
+  margin: auto auto 10px;
 }
 
+.is-compact .portfolio-logo {
+  height: 50px;
+  width: 50px;
+  margin-top: 7px;
+}
+
+.portfolio-navigation-row {
+  background-color: rgba(0, 0, 0, 0.08);
+  text-transform: uppercase;
+  height: 45px;
+}
+
+.portfolio-navigation-row  .mdl-navigation {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.portfolio-navigation-row .mdl-navigation__link {
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  line-height: 42px;
+}
+
+.portfolio-header .mdl-layout__drawer-button {
+    background-color: rgba(197, 197, 197, 0.44);
+}
+
+.portfolio-navigation-row .is-active {
+  position: relative;
+  font-weight: bold;
+}
+
+.portfolio-navigation-row .is-active:after {
+  content: "";
+  width: 70%;
+  height: 2px;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(255,64,129);
+  left: 15%;
+}
+
+.portfolio-card .mdl-card__title {
+  padding-bottom: 0;
+}
+
+.portfolio-blog-card-full-bg {
+  background: url(images/example-blog03.jpg) center / cover;
+}
+
+.portfolio-blog-card-event-bg {
+  background: url(images/example-blog05.jpg) center / cover;
+}
+
+.portfolio-blog-card-strip-bg {
+  background: url(images/example-blog06.jpg) center / cover;
+}
+
+.portfolio-blog-card-compact .mdl-card__title {
+  padding-bottom: 0;
+}
+
+.portfolio-blog-card-bg > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+img.article-image {
+  width: 100%;
+  height: auto;
+}
+
+.portfolio-max-width {
+  max-width: 900px;
+  margin: auto;
+}
+
+.portfolio-copy {
+  max-width: 700px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-left-padding{
+  padding-left: 0;
+}
+
+.no-bottom-padding {
+  padding-bottom: 0;
+}
+
+.padding-top {
+  padding: 10px 0 0;
+}
+
+.portfolio-share-btn {
+  position: relative;
+  float: right;
+  top: -4px;
+}
+
+.demo-card-event > .mdl-card__actions {
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.portfolio-contact .mdl-textfield {
+  width: 100%;
+}
+
+.portfolio-contact form {
+  max-width: 550px;
+  margin: auto;
+}
+
+footer {
+  background-image: url(images/footer-background.png);
+  background-size: cover;
+}
 
 
 .campgrounds {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+}
+.campgrounds  h2 {
+  font-size: 24px;
+}
+ .campground img {
+  height: 200px;
 }
 .campground {
-  position: relative;
-  margin: 10px 10px 10px 10px;
+  padding: 20px;
+}
+.show img {
+  height: 200px;
+  padding: 20px;
 
 }
-
-.campgroundName {
-  position: absolute;
-  top: 100px;
-  left: 0px;
-  color: white;
-  background: rgba(0,0,0,.7);
-  padding: 5px;
-  font-size: 1em;
+.show h1 {
+  font-size: 32px
+}
+.show h2 {
+  font-size: 24px;
+}
+.show {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+}
+.description {
+  width: 200px;
 
 }
+.container-desc {
+  display: flex;
+  flex-direction: row;
+justify-content:  center;
+}
 
-img {
-  width: 300px;
-  height: 150px;
+.comments {
+  display: flex;
+  flex-direction: column;
+  align-items:   flex-start;
 }
