@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/campsDB');
 mongoose.Promise = require('bluebird');
-const camp = require('./model/camp');
+const camp = require('./models/camp');
 
 const seedDB = () => {
 

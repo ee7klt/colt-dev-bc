@@ -7,12 +7,13 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/campsDB');
-var camp = require('./model/camp');
+var camp = require('./models/camp');
 var seedDB = require('./seeds');
+// var Comment = require('./models/comment')
 
 
 
-//seedDB();
+seedDB();
 
 // using seed.js instead now.
 // let campgrounds = [
@@ -140,15 +141,25 @@ app.get('/campgrounds/:id/comments/new', function(req,res) {
 
 // CREATE NEW CAMP COMMENT
 app.post('/campgrounds/:id/comments', function(req, res) {
-  console.log(req.body)
   var id = req.params.id
   camp.findById(id, (err, campground) => {
     if (err) {
       console.log('unable to retrieve camground for creating comment')
     } else {
-      console.log('adding comment to camp ... ')
-      console.log(campground.comments)
-      res.redirect('/campgrounds/'+id)
+      // Comment.create(req.body.comment, function(err, comment) {
+        console.log('adding comment to camp ... ')
+        campground.comments.push(req.body.comment)
+        campground.save((err, campground) => {
+          if (err) {
+            console.log("cannot save after adding comment")
+          } else {
+            console.log(campground)
+            res.redirect('/campgrounds/'+id)
+          }
+        })
+
+      // })
+
     }
   })
 
