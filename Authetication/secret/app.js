@@ -58,6 +58,16 @@ app.post('/register', function(req,res){
 })
 
 
+// LOGIN ROUTES
+// render login form
+
+app.get('/login', function(req,res){
+  res.render('login')
+})
+
+
+// handle user login
+
 
 app.listen(app.get('port'), function(){
   console.log('server started on port ' + app.get('port'));
