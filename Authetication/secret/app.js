@@ -67,7 +67,18 @@ app.get('/login', function(req,res){
 
 
 // handle user login
-
+app.post('/login', function(req,res){
+  User.find({'username':req.body.username},
+    function(err,user) {
+      if (user.length === 0) {
+        console.log('error cannot find user in db')
+      } else {
+        console.log('login successful')
+      }
+      res.redirect('/login')
+    }
+)
+})
 
 app.listen(app.get('port'), function(){
   console.log('server started on port ' + app.get('port'));
