@@ -18,6 +18,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var User = require('./models/user');
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 app.use(bodyParser.urlencoded({extended:true}))
@@ -67,7 +68,10 @@ app.get('/login', function(req,res){
 
 
 // handle user login
-app.post('/login', function(req,res){
+app.post('/login', passport.authenticate('local', {
+  successRedirect:'/secret',
+  failureRedirect:'/login'
+}),  function(req,res){
   User.find({'username':req.body.username},
     function(err,user) {
       if (user.length === 0) {
@@ -79,6 +83,14 @@ app.post('/login', function(req,res){
     }
 )
 })
+
+
+// LOGOUT
+app.get('/logout', function(req,res){
+  req.logout();
+  res.redirect('/')
+})
+
 
 app.listen(app.get('port'), function(){
   console.log('server started on port ' + app.get('port'));
