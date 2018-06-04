@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.get('/', function(req,res){
   res.render('home');
 })
-app.get('/secret', function(req,res){
+app.get('/secret', isLoggedIn, function(req,res){
   res.render('secret');
 })
 
@@ -91,6 +91,14 @@ app.get('/logout', function(req,res){
   res.redirect('/')
 })
 
+
+// check if logged in using middleware
+function isLoggedIn(req,res,next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('login')
+}
 
 app.listen(app.get('port'), function(){
   console.log('server started on port ' + app.get('port'));
