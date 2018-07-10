@@ -9,14 +9,23 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/campsDB');
 var camp = require('./models/camp');
 var seedDB = require('./seeds');
+var User = require('./models/user');
 // var Comment = require('./models/comment')
 
+// PASSPORT CONFIGURATION
+app.use(require('express-session')(
+  {secret:'secretkey',
+  resave: false,
+  saveUninitialized: false}
+))
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+var passportLocalMongoose = require('passport-local-mongoose');
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(require('express-session')({
-  secret:'key', resave:false,saveUninitialized:false
-}))
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 
@@ -174,6 +183,34 @@ app.post('/campgrounds/:id/comments', function(req, res) {
 
 })
 
+
+// ============
+// AUTH ROUTES
+// ===========
+
+// show register form
+app.get('/register', function(req, res) {
+  res.render('register')
+})
+
+// handle register form POST
+app.post('/register', function(req,res) {
+  //res.send(req.body)
+  User.register(new User({
+    username:req.body.username
+  }),
+  req.body.password,
+  function(err,user){
+    if(err) {
+      console.log(err);
+      return res.render('register');
+    }
+    passport.authenticate('local')(req, res, function(){
+      res.redirect('/');
+    })
+  }
+)
+})
 
 app.listen(3300, function() {
   console.log('server started at port 3300!');
