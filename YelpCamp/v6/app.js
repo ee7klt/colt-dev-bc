@@ -9,6 +9,7 @@ app.use(express.static(__dirname + "/public"));
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 var mongoose = require('mongoose');
+mongoose.plugin(schema => { schema.options.usePushEach = true });
 mongoose.connect('mongodb://localhost/campsDB');
 var camp = require('./models/camp');
 var seedDB = require('./seeds');
@@ -181,11 +182,13 @@ app.post('/campgrounds/:id/comments', isLoggedIn, function(req, res) {
       console.log('unable to retrieve camground for creating comment')
     } else {
       // Comment.create(req.body.comment, function(err, comment) {
-        console.log('adding comment to camp ... ')
-        campground.comments.push(req.body.comment)
+        console.log('adding comment to camp ... ', req.body.comment)
+        campground.comments.push(req.body.comment);
+        console.log(campground);
         campground.save((err, campground) => {
           if (err) {
             console.log("cannot save after adding comment")
+            console.log(err)
           } else {
             console.log(campground)
             res.redirect('/campgrounds/'+id)
