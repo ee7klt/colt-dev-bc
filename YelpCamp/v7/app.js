@@ -35,18 +35,19 @@ passport.deserializeUser(User.deserializeUser());
 var commentRoutes = require('./routes/comments'),
     campgroundRoutes = require('./routes/campgrounds'),
     indexRoutes = require('./routes/index');
+// middleware for passing through userdata on all routes
+// needs to come after passport initialization
+  app.use(function(req,res,next){
+    res.locals.currentUser = req.user;
+    next();
+  });
 
 app.use(indexRoutes);
 app.use(commentRoutes);
 app.use(campgroundRoutes);
 
 
-// middleware for passing through userdata on all routes
-// needs to come after passport initialization
-app.use(function(req,res,next){
-  res.locals.currentUser = req.user;
-  next();
-});
+
 
 //seedDB();
 
