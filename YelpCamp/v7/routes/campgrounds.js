@@ -3,7 +3,7 @@ var router = express.Router();
 var camp = require('../models/camp');
 
 //INDEX: show all campgrounds + NEW: form to submit campground
-router.get('/campgrounds', function(req,res) {
+router.get('/', function(req,res) {
   camp.find({}, (err, campgrounds) => {
     if (err) {
       console.log('unable to retrieve campgrounds')
@@ -18,7 +18,7 @@ router.get('/campgrounds', function(req,res) {
 
 
 // CREATE: add new campground to database
-router.post('/campgrounds', function(req,res) {
+router.post('/', function(req,res) {
   //campgrounds.push({name:req.body.camp, image:"http://lorempixel.com/400/200/"})
   var name = req.body.camp;
   var image = req.body.image;
@@ -41,7 +41,7 @@ router.post('/campgrounds', function(req,res) {
 
 
 // SHOW: shows more info about 1 campground
-router.get('/campgrounds/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   var id = req.params.id;
   console.log(id)
   camp.findById(id, function(err, campground) {

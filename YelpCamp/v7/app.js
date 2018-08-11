@@ -44,7 +44,7 @@ var commentRoutes = require('./routes/comments'),
 
 app.use(indexRoutes);
 app.use(commentRoutes);
-app.use(campgroundRoutes);
+app.use('/campgrounds',campgroundRoutes);
 
 
 
