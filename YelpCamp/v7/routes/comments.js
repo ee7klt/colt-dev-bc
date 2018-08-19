@@ -1,10 +1,10 @@
 
 var express = require('express');
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 var camp = require('../models/camp');
 
 // NEW CAMP COMMENT: form to add comment about a particular campground
-router.get('/campgrounds/:id/comments/new', isLoggedIn, function(req,res) {
+router.get('/new', isLoggedIn, function(req,res) {
   var id = req.params.id;
   camp.findById(id, (err, campground) => {
     if (err) {
@@ -18,7 +18,7 @@ router.get('/campgrounds/:id/comments/new', isLoggedIn, function(req,res) {
 })
 
 // CREATE NEW CAMP COMMENT
-router.post('/campgrounds/:id/comments', isLoggedIn, function(req, res) {
+router.post('/', isLoggedIn, function(req, res) {
   var id = req.params.id
   camp.findById(id, (err, campground) => {
     if (err) {
@@ -42,6 +42,8 @@ router.post('/campgrounds/:id/comments', isLoggedIn, function(req, res) {
   })
 
 })
+
+
 // middleware to check for Login
 function isLoggedIn(req,res,next) {
   if(req.isAuthenticated()){

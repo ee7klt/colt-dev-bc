@@ -43,7 +43,7 @@ var commentRoutes = require('./routes/comments'),
   });
 
 app.use(indexRoutes);
-app.use(commentRoutes);
+app.use('/campgrounds/:id/comments',commentRoutes);
 app.use('/campgrounds',campgroundRoutes);
 
 
