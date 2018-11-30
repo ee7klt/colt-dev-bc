@@ -1,0 +1,88 @@
+<% include ../partials/header %>
+<div class='show-container'>
+
+
+<div class='side '>
+  <ul class="demo-list-item mdl-list">
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-primary-content">
+        Bryan Cranston
+      </span>
+    </li>
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-primary-content">
+        Aaron Paul
+      </span>
+    </li>
+    <li class="mdl-list__item">
+      <span class="mdl-list__item-primary-content">
+        Bob Odenkirk
+      </span>
+    </li>
+  </ul>
+</div>
+
+
+
+<div class = 'show '>
+
+
+
+  <div class='container-desc'>
+    <div>
+      <img src = <%=campground.image%>  >
+    </div>
+    <div class='captionanddescription'>
+      <div class='caption'>
+        <p class='camp-name '>
+          <h3><%- campground.name %></h3>
+        </p>
+        <p class='price '>
+        <h3>$9.00/night</h3>
+        </p>
+
+      </div>
+
+      <div>
+        <p class='description'>
+          <%- campground.description %>
+        </p>
+      </div>
+    </div>
+
+
+
+  </div>
+  <hr />
+  <div class="comments">
+    <h2>Comments</h2>
+
+    <p>
+      <% campground.comments.forEach(x => { %>
+        <div class='comment'>
+          <div>
+            <p>
+              <%= x.username %>
+            </p>
+             <p>
+               <%= x.comment %>
+             </p>
+          </div>
+
+         <p>
+           10 days ago
+         </p>
+        </div>
+
+        <% }) %>
+      </p>
+      <form action="/campgrounds/<%= campground.id %>/comments/new">
+        <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+          Add comment
+        </button>
+      </form>
+    </div>
+
+  </div>
+  <% include ../partials/footer %>
+</div>
