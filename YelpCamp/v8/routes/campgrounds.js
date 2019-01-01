@@ -18,17 +18,17 @@ router.get('/', function(req,res) {
 
 
 // NEW
-router.get('/new', function(req,res){
+router.get('/new', isLoggedIn, function(req,res){
   res.render('campgrounds/new');
 })
 
 // CREATE: add new campground to database
-router.post('/', function(req,res) {
+router.post('/', isLoggedIn, function(req,res) {
   //campgrounds.push({name:req.body.camp, image:"http://lorempixel.com/400/200/"})
   var name = req.body.camp;
   var image = req.body.image;
   var desc = req.body.desc;
-  var newCamp = {name: name, image: image, description: desc};
+  var newCamp = {name: name, image: image, description: desc, user: req.user.username, userid: req.user._id};
   camp.create(newCamp, function(err,res) {
     if(err) {
       console.log('error creating new document')

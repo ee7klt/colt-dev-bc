@@ -28,7 +28,7 @@ router.post('/', isLoggedIn, function(req, res) {
         console.log('adding comment to camp ... ')
         console.log('username is '+req.user.username)
         console.log('comment is '+ req.body.comment)
-        campground.comments.push({username: req.user.username , comment: req.body.comment})
+        campground.comments.push({username: req.user.username , comment: req.body.comment, id: req.user._id})
         campground.save((err, campground) => {
           if (err) {
             console.log("cannot save after adding comment")

@@ -4,7 +4,8 @@ var mongoose = require('mongoose')
 // comment Schema
 module.exports = new mongoose.Schema({
   username: String,
-  comment: String
+  comment: String,
+  userid: String
 })
 
 // //

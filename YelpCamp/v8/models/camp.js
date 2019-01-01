@@ -6,7 +6,9 @@ var campSchema = new mongoose.Schema({
   name: String,
   image: String,
   description: String,
-  comments: [commentSchema]
+  comments: [commentSchema],
+  user: String,
+  userid: String
 })
 
 module.exports = mongoose.model('camp', campSchema);
