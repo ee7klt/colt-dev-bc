@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var camp = require('../models/camp');
 
-//INDEX: show all campgrounds + NEW: form to submit campground
+//INDEX: show all campgrounds
 router.get('/', function(req,res) {
   camp.find({}, (err, campgrounds) => {
     if (err) {
@@ -16,6 +16,11 @@ router.get('/', function(req,res) {
 
 })
 
+
+// NEW
+router.get('/new', function(req,res){
+  res.render('campgrounds/new');
+})
 
 // CREATE: add new campground to database
 router.post('/', function(req,res) {
@@ -36,7 +41,7 @@ router.post('/', function(req,res) {
   // redirect defaults as GET.
   // so even though we have two routes with campgrounds
   // will choose teh GET.
-  res.redirect('campgrounds/campgrounds')
+  res.redirect('campgrounds')
 })
 
 
@@ -57,5 +62,11 @@ router.get('/:id', function(req, res) {
 
 })
 
-
+// middleware to check for Login
+function isLoggedIn(req,res,next) {
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/login');
+}
 module.exports=router;
