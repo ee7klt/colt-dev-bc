@@ -1,0 +1,23 @@
+
+<% include ../partials/header %>
+<div class='new-container'>
+  <form action="#">
+    <img class='edit-img' src='<%=campground.image%>'>
+    <br>
+  <div class="mdl-textfield mdl-textfield--floating-label mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="name" value='<%=campground.name%>'>
+    <label class="mdl-textfield__label" for="name">Campground name</label>
+  </div>
+  <div class="mdl-textfield extrawide mdl-textfield--floating-label mdl-js-textfield">
+      <textarea class="mdl-textfield__input" type="text" rows= "8" id="description" ><%=campground.description%></textarea>
+      <label class="mdl-textfield__label" for="description">Description</label>
+    </div>
+  <br>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+  Save!
+</button>
+
+</form>
+
+</div>
+<% include ../partials/footer %>
