@@ -19,7 +19,19 @@ router.get('/campgrounds/:id/edit',function(req,res) {
 })
 
 // UPDATE camp
+router.put('/campgrounds/:id/',function(req,res) {
+  var id = req.params.id;
+  var body = req.body;
+  camp.findByIdAndUpdate(id, body, (err, campground) => {
+    if (err) {
+      console.log('unable to retrieve camground for update')
+    } else {
+      console.log('retrieved campground for update')
+      res.redirect("campgrounds/"+id, {campground: campground})
+    }
+  })
 
+})
 
 
 // middleware to check for Login

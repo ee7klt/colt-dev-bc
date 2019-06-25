@@ -1,7 +1,7 @@
 
 <% include ../partials/header %>
 <div class='new-container'>
-  <form action="#">
+  <form action="/campgrounds/<%=campground.id%>?_method=PUT" method="POST">
     <img class='edit-img' src='<%=campground.image%>'>
     <br>
   <div class="mdl-textfield mdl-textfield--floating-label mdl-js-textfield">
