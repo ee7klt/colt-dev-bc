@@ -11,7 +11,7 @@ router.get('/campgrounds/:id/edit',function(req,res) {
     if (err) {
       console.log('unable to retrieve camground for comment')
     } else {
-      console.log('retrieved campground for comment')
+      console.log('retrieved campground for edit')
       res.render("show/edit", {campground: campground})
     }
   })
@@ -21,13 +21,15 @@ router.get('/campgrounds/:id/edit',function(req,res) {
 // UPDATE camp
 router.put('/campgrounds/:id/',function(req,res) {
   var id = req.params.id;
-  var body = req.body;
-  camp.findByIdAndUpdate(id, body, (err, campground) => {
+  var campground = req.body.campground;
+console.log(req.body)
+  camp.findByIdAndUpdate(id, campground, (err, campground) => {
     if (err) {
       console.log('unable to retrieve camground for update')
     } else {
+
       console.log('retrieved campground for update')
-      res.redirect("campgrounds/"+id, {campground: campground})
+      res.redirect(id)
     }
   })
 
