@@ -13,17 +13,16 @@
    </div>
 
     <div class="campgrounds">
+    
       <% campgrounds.forEach(x => { %>
+        <div class="demo-card-image mdl-card mdl-shadow--2dp" style='background-image:url(<%=x.image%>); background-size:cover'>
+      <div class="mdl-card__title mdl-card--expand"></div>
+      <div class="mdl-card__actions">
+      <span class="demo-card-image__filename"> <%= x.name %></span>
+      </div>
+      </div>
 
-        <div class='mdl-card'>
-            <a href='/campgrounds/<%= x.id %>' style='position:absolute; top:0; left:0;height:100%;width:100%'></a>
-          <div class='mdl-card__title mdl-card--expand' style='background-image:url(<%=x.image%>); background-size:cover'>
-            <h2 class='mdl-card__title-text'>
-              <%= x.name %>
-            </h2>
-          </div>
 
-        </div>
       <% }) %>
     </div>
 <h4><%= currentUser %><h4>

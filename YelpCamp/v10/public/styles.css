@@ -268,15 +268,11 @@ padding: 10px;
   align-items:   flex-start;
 }
 
-.mdl-card {
-  width:320px;
-  height:320px;
-  border: red solid 1px
-}
-.mdl-card__title{
-  color: #d3d3d3;
 
-}
+
+
+
+
 
 .extrawide{
     width:80% !important;
@@ -284,4 +280,36 @@ padding: 10px;
 }
 .edit-img {
   width:90%;
+}
+.camp-image.mdl-card{
+  width:320px;
+  height:320px;
+  padding:10px;
+   margin:10px;
+}
+
+.camp-image > .mdl-card__actions {
+ border: 1px solid red;
+ height: 52px;
+ padding: 16px;
+ background: rgba(0, 0, 0, 1);
+}
+
+.demo-card-image.mdl-card {
+  width: 256px;
+  height: 256px;
+  padding:10px;
+  margin:10px;
+
+}
+.demo-card-image > .mdl-card__actions {
+
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, .4);
+}
+.demo-card-image__filename {
+  color: rgba(200, 200, 200, .9);
+  font-size: 14px;
+  font-weight: 500;
 }
