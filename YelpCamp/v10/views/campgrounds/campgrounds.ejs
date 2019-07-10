@@ -12,23 +12,26 @@
    </form>
    </div>
 
-    <div class="campgrounds">
-    
+    <div class="campgrounds mdl-grid">
+
       <% campgrounds.forEach(x => { %>
+        <div class='mdl-cell--stretch'>
+
         <div class="demo-card-image mdl-card mdl-shadow--2dp" style='background-image:url(<%=x.image%>); background-size:cover'>
       <div class="mdl-card__title mdl-card--expand"></div>
       <div class="mdl-card__actions">
-      <span class="demo-card-image__filename"> <%= x.name %></span>
+      <a href='/campgrounds/<%= x.id %>'><span class="demo-card-image__filename"> <%= x.name %></span></a>
       </div>
       </div>
 
+  </div>
 
       <% }) %>
-    </div>
-<h4><%= currentUser %><h4>
-  </div>
-  <div  style=' background-image:url(images/camp1.jpg)'>
 
     </div>
-    <script src="/script.js"></script>
-  </body>
+
+  </div>
+
+
+    </div>
+  <% include ../partials/footer %>

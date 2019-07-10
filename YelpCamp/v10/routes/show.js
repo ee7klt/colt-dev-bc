@@ -18,6 +18,20 @@ router.get('/campgrounds/:id/edit',function(req,res) {
 
 })
 
+// DELETE camp
+router.delete('/campgrounds/:id/',function(req,res) {
+  var id = req.params.id;
+  camp.findByIdAndRemove(id, (err, campground) => {
+    if (err) {
+      console.log('unable to retrieve camground for delete')
+    } else {
+      console.log('deleted '+ id )
+      res.redirect('/campgrounds')
+    }
+  })
+
+})
+
 // UPDATE camp
 router.put('/campgrounds/:id/',function(req,res) {
   var id = req.params.id;

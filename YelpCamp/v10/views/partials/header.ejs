@@ -64,4 +64,6 @@ Contact
     </div>
 
   <main class="mdl-layout__content">
-  <p> user = <%= currentUser %></p>
+    <% if (currentUser) { %>
+<p> Logged in as <%= currentUser.username %></p>
+<% } %>
