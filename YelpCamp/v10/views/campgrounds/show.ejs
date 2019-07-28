@@ -56,16 +56,19 @@
 
 
   </div>
+  <div id='deleteform'>
   <form  method='get' action='/campgrounds/<%- campground.id %>/edit'>
-  <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+  <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" type="submit" >
     Edit
   </button>
 </form>
-<form action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
-  <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+
+<form  action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
+  <button class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised" type="submit" >
     Delete
   </button>
 </form>
+</div>
   <hr />
   <div class="comments">
     <h2>Comments</h2>

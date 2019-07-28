@@ -1,10 +1,18 @@
 <% include partials/header %>
-<body>
+
 <h2>Login</h2>
-<form action='/login' method='POST'>
-  <input name='username' type='text' placeholder='username'>
-  <input name='password' type='password' placeholder='password'>
-  <button>Submit</button>
+<form action='/login' method='POST' class='login'>
+  <div class="mdl-textfield mdl-textfield--floating-label mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="username" name="username">
+    <label class="mdl-textfield__label" for="username">Username</label>
+  </div>
+  <div class="mdl-textfield mdl-textfield--floating-label mdl-js-textfield">
+    <input class="mdl-textfield__input" type="password" id="password" name="password">
+    <label class="mdl-textfield__label" for="password">Password</label>
+  </div>
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+  Login
+</button>
 </form>
-</body>
+
 <% include partials/footer %>
