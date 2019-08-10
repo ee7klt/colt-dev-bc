@@ -5,32 +5,15 @@ var router = express.Router({mergeParams: true});
 var camp = require('../models/camp');
 var user = require('../models/user');
 // EDIT camp
-router.get('/campgrounds/:id/edit',function(req,res) {
-  var id = req.params.id;
-  if(req.isAuthenticated()) {
-    camp.findById(id, (err, campground) => {
-      if (err) {
-        console.log('unable to retrieve camground for comment')
-      } else {
-        console.log('retrieved campground for edit')
-        console.log(typeof campground.userid)
-        console.log(typeof req.user._id)
-        if (req.user._id.equals(campground.userid)) {
-          res.render("show/edit", {campground: campground})
-        } else {
-          res.send('you are not authorized to edit this camp either because you are not logged in or because this camp does not belong to you')
-        }
-
-      }
-    })
-  } else {
-    console.log("you need to be logged in to do that");
-    res.send("you need to be logged in to do that");
-  }
+router.get('/campgrounds/:id/edit', checkCampgroundOwnership, function(req,res) {
+      var id = req.params.id;
+      camp.findById(id, (err, campground) => {
+        res.render("show/edit", {campground: campground})
+      })
 })
 
 // DELETE camp
-router.delete('/campgrounds/:id/',function(req,res) {
+router.delete('/campgrounds/:id/',checkCampgroundOwnership,function(req,res) {
   var id = req.params.id;
   camp.findByIdAndRemove(id, (err, campground) => {
     if (err) {
@@ -44,7 +27,7 @@ router.delete('/campgrounds/:id/',function(req,res) {
 })
 
 // UPDATE camp
-router.put('/campgrounds/:id/',function(req,res) {
+router.put('/campgrounds/:id/',checkCampgroundOwnership,function(req,res) {
   var id = req.params.id;
   var campground = req.body.campground;
   console.log(req.body)
@@ -59,6 +42,35 @@ router.put('/campgrounds/:id/',function(req,res) {
   })
 
 })
+
+
+// middleware authentication (is logged in person authorized to edit etc.)
+function checkCampgroundOwnership(req,res,next) {
+    var id = req.params.id;
+  // check for login first
+  if(req.isAuthenticated()) {
+    camp.findById(id, (err, campground) => {
+      if (err) {
+        console.log('unable to retrieve camground for comment')
+      } else {
+        console.log('retrieved campground for edit')
+          // if they own it, next()
+        if (req.user._id.equals(campground.userid)) {
+          next()
+        } else {
+            // if they don't own it, redirect back.
+          res.redirect('back')
+        }
+
+      }
+    })
+  } else {
+    console.log("you need to be logged in to do that");
+      res.redirect('back')
+  }
+
+
+}
 
 
 // middleware to check for Login
