@@ -28,7 +28,7 @@ router.post('/', isLoggedIn, function(req, res) {
         console.log('adding comment to camp ... ')
         console.log('username is '+req.user.username)
         console.log('comment is '+ req.body.comment)
-        campground.comments.push({username: req.user.username , comment: req.body.comment, id: req.user._id})
+        campground.comments.push({username: req.user.username , comment: req.body.comment, userid: req.user._id})
         campground.save((err, campground) => {
           if (err) {
             console.log("cannot save after adding comment")
@@ -44,6 +44,27 @@ router.post('/', isLoggedIn, function(req, res) {
   })
 
 })
+
+
+// DELETE comment
+router.delete('/:commentid/',function(req,res) {
+  var id = req.params.id;
+  var commentid = req.params.commentid;
+  camp.findById(id, (err, campground) => {
+    if (err) {
+      console.log('unable to retrieve camground for delete')
+    } else {
+      console.log(campground.comments)
+      campground.comments = campground.comments.filter((comment,index,arr) => {
+          return !comment._id.equals(commentid);
+      });
+      console.log(campground.comments)
+      res.redirect('back')
+    }
+  })
+
+})
+
 
 
 // middleware to check for Login

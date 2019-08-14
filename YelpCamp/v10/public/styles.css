@@ -199,14 +199,31 @@ footer {
 .campground {
   padding: 20px;
 }
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
 .comment {
   display: flex;
-  width: 100%;
-    /* outline: 1px green solid; */
+  flex-direction: row;
+  justify-content: space-between;
+
 }
-.comment p:last-child {
-  margin-left: auto;
+
+.comment-hamburger {
+display:none;
 }
+
+
+
+.comment:hover > .comment-hamburger {
+  display:block;
+  position: relative;
+}
+
+
+
 .show-container {
   display: flex;
   flex-direction: row;
@@ -243,6 +260,7 @@ footer {
  display: flex;
  flex-direction: column;
  width:70%;
+ margin-bottom: 120px;
 }
 .side {
 width: 10%;
@@ -261,11 +279,7 @@ padding: 10px;
 .captionanddescription {
   padding: 10px;
 }
-.comments {
-  display: flex;
-  flex-direction: column;
-  align-items:   flex-start;
-}
+
 
 
 
@@ -321,4 +335,14 @@ padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.buttonLooksLikeLink {
+     background:none;
+     color:inherit;
+     border:none;
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     cursor: pointer;
 }
