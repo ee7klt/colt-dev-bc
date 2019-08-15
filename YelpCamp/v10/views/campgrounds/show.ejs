@@ -67,7 +67,7 @@
           </button>
         </form>
       </div>
-    <% } %>
+      <% } %>
       <hr />
 
       <h2>Comments</h2>
@@ -85,36 +85,35 @@
             </div>
             <div class='comment-hamburger'>
               <button id="<%= x._id %>"
-              class="mdl-button mdl-js-button mdl-button--icon ">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-    for="<%= x._id %>">
-  <li class="mdl-menu__item"><i class="material-icons">flag</i></li>
-  <% if (currentUser && currentUser._id.equals(x.userid)) { %>
-  <li class="mdl-menu__item">Edit</li>
-  <li class="mdl-menu__item">
-     <form  action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>?_method=DELETE" method="POST">
-      <button class='buttonLooksLikeLink' >
-        Delete
-      </button>
-    </form>
-  </li>
-    <% } %>
-</ul>
+                class="mdl-button mdl-js-button mdl-button--icon ">
+                <i class="material-icons">more_vert</i>
+              </button>
+              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+              for="<%= x._id %>">
+                <li class="mdl-menu__item"><i class="material-icons">flag</i></li>
+              <li class="mdl-menu__item">Edit</li>
+              <li class="mdl-menu__item">
+                <form  action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>?_method=DELETE" method="POST">
+                  <button class='buttonLooksLikeLink' >
+                    Delete
+                  </button>
+                </form>
+              </li>
+
+            </ul>
           </div>
         </div>
         <% }) %>
       </div>
 
-        <form action="/campgrounds/<%= campground.id %>/comments/new">
-          <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
-            Add comment
-          </button>
-        </form>
+      <form action="/campgrounds/<%= campground.id %>/comments/new">
+        <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+          Add comment
+        </button>
+      </form>
 
 
-  </div>
+    </div>
 
 
     <% include ../partials/footer %>

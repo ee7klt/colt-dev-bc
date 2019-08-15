@@ -5,8 +5,7 @@ var mongoose = require('mongoose')
 module.exports = new mongoose.Schema({
   username: String,
   userid: String,
-  comment: String,
-  userid: String
+  comment: String
 })
 
 // //

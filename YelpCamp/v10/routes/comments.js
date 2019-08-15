@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router({mergeParams: true});
 var camp = require('../models/camp');
 
+
 // NEW CAMP COMMENT: form to add comment about a particular campground
 router.get('/new', isLoggedIn, function(req,res) {
   var id = req.params.id;
@@ -54,11 +55,17 @@ router.delete('/:commentid/',function(req,res) {
     if (err) {
       console.log('unable to retrieve camground for delete')
     } else {
-      console.log(campground.comments)
-      campground.comments = campground.comments.filter((comment,index,arr) => {
-          return !comment._id.equals(commentid);
+      var commentToBeRemoved = campground.comments.id(commentid).comment;
+      campground.comments.id(commentid).remove();
+      campground.save((err) => {
+        if (err) console.log('error removing comment');
+        console.log('removed comment "'+commentToBeRemoved+'"');
       });
-      console.log(campground.comments)
+
+
+      // campground.comments = campground.comments.filter((comment,index,arr) => {
+      //     return !comment._id.equals(commentid);
+      // });
       res.redirect('back')
     }
   })
