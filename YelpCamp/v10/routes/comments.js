@@ -4,7 +4,7 @@ var router = express.Router({mergeParams: true});
 var camp = require('../models/camp');
 
 
-// NEW CAMP COMMENT: form to add comment about a particular campground
+// FORM new comment
 router.get('/new', isLoggedIn, function(req,res) {
   var id = req.params.id;
   camp.findById(id, (err, campground) => {
@@ -18,7 +18,41 @@ router.get('/new', isLoggedIn, function(req,res) {
 
 })
 
-// CREATE NEW CAMP COMMENT
+
+ // FORM edit comment
+ router.get('/:comment_id/edit',  function(req,res) {
+   var camp_id = req.params.id;
+   var comment_id = req.params.comment_id;
+   camp.findById(camp_id, (err, campground) => {
+     if (err) {
+       res.send("ERROR: cannot reach camp");
+     } else {
+      // res.send('comment edit')
+      var comment = campground.comments.id(comment_id);
+      console.log(comment)
+      //res.send('edit comment')
+      res.render("comments/edit", {camp_id: camp_id, comment_id:comment_id, comment: comment})
+     }
+   })
+
+ })
+
+
+
+ // UPDATE comment
+ router.put('/:comment_id',function(req,res) {
+   var camp_id = req.params.id;
+   var comment_id = req.params.comment_id;
+   camp.findById(camp_id, (err,campground) => {
+     const comment = campground.comments.id(comment_id);
+     comment.set(req.body);
+     campground.save();
+     res.redirect('/campgrounds/'+camp_id);
+   })
+
+})
+
+// CREATE comment
 router.post('/', isLoggedIn, function(req, res) {
   var id = req.params.id
   camp.findById(id, (err, campground) => {
@@ -45,7 +79,6 @@ router.post('/', isLoggedIn, function(req, res) {
   })
 
 })
-
 
 // DELETE comment
 router.delete('/:commentid/',function(req,res) {

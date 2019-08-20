@@ -46,3 +46,17 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button {
+    display: inline-block;
+    border: none;
+    text-decoration: none;
+    background: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    text-align: center;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}

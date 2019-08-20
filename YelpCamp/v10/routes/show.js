@@ -4,6 +4,8 @@ var express = require('express');
 var router = express.Router({mergeParams: true});
 var camp = require('../models/camp');
 var user = require('../models/user');
+
+
 // EDIT camp
 router.get('/campgrounds/:id/edit', checkCampgroundOwnership, function(req,res) {
       var id = req.params.id;

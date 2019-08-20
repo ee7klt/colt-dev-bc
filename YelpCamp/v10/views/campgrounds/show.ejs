@@ -84,17 +84,22 @@
               </p>
             </div>
             <div class='comment-hamburger'>
-              <button id="<%= x._id %>"
-                class="mdl-button mdl-js-button mdl-button--icon ">
+              <button id="<%= x._id %>"  class="mdl-button mdl-js-button mdl-button--icon ">
                 <i class="material-icons">more_vert</i>
               </button>
-              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect paddingZero"
               for="<%= x._id %>">
-                <li class="mdl-menu__item"><i class="material-icons">flag</i></li>
-              <li class="mdl-menu__item">Edit</li>
-              <li class="mdl-menu__item">
-                <form  action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>?_method=DELETE" method="POST">
-                  <button class='buttonLooksLikeLink' >
+              <li class="mdl-menu__item paddingZero"><i class="material-icons parentWidth indent15">flag</i></li>
+              <li class="mdl-menu__item paddingZero">
+                <form class='parentWidth' initial action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>/edit" type="submit" >
+                  <button class=' parentWidth indent15'>
+                    Edit
+                  </button>
+                </form>
+              </li>
+              <li class="mdl-menu__item paddingZero">
+                <form  class='parentWidth' action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>?_method=DELETE" method="POST">
+                  <button class=' parentWidth indent15'>
                     Delete
                   </button>
                 </form>
@@ -106,14 +111,14 @@
         <% }) %>
       </div>
 
-      <form action="/campgrounds/<%= campground.id %>/comments/new">
-        <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
-          Add comment
-        </button>
-      </form>
+        <form action="/campgrounds/<%= campground.id %>/comments/new">
+          <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+            Add comment
+          </button>
+        </form>
 
 
-    </div>
+      </div>
 
 
-    <% include ../partials/footer %>
+      <% include ../partials/footer %>
