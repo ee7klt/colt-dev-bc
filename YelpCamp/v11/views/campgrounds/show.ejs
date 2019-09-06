@@ -1,0 +1,128 @@
+<% include ../partials/header %>
+<div class='show-container'>
+
+
+  <div class='side '>
+    <ul class="demo-list-item mdl-list">
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          Bryan Cranston
+        </span>
+      </li>
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          Aaron Paul
+        </span>
+      </li>
+      <li class="mdl-list__item">
+        <span class="mdl-list__item-primary-content">
+          Bob Odenkirk
+        </span>
+      </li>
+    </ul>
+  </div>
+
+
+
+  <div class = 'show '>
+
+
+
+    <div class='container-desc'>
+      <div>
+        <img src = <%=campground.image%>  >
+      </div>
+      <div class='captionanddescription'>
+        <div class='caption'>
+          <p class='camp-name '>
+            <h3><%- campground.name %></h3>
+          </p>
+          <p class='price '>
+            <h3>$9.00/night</h3>
+          </p>
+
+        </div>
+
+        <div>
+          <p>
+            Submitted by <%- campground.user %>
+          </p>
+          <p class='description'>
+            <%- campground.description %>
+          </p>
+        </div>
+      </div>
+    </div>
+  
+    <% if (currentUser && currentUser._id.equals(campground.userid)) { %>
+
+      <div id='deleteform'>
+        <form  method='get' action='/campgrounds/<%- campground.id %>/edit'>
+          <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised" type="submit" >
+            Edit
+          </button>
+        </form>
+
+        <form  action="/campgrounds/<%= campground.id %>?_method=DELETE" method="POST">
+          <button class="mdl-button mdl-js-button mdl-button--accent mdl-button--raised" type="submit" >
+            Delete
+          </button>
+        </form>
+      </div>
+      <% } %>
+      <hr />
+
+      <h2>Comments</h2>
+      <div class="comments">
+        <% campground.comments.forEach(x => { %>
+          <div class='comment'>
+            <div class='comment-element'>
+              <span style='font-weight:700;'>
+                <%= x.username %>
+              </span>
+              <span>10 days ago</span>
+              <p>
+                <%= x.comment %>
+
+              </p>
+            </div>
+            <div class='comment-hamburger'>
+              <button id="<%= x._id %>"  class="mdl-button mdl-js-button mdl-button--icon ">
+                <i class="material-icons">more_vert</i>
+              </button>
+              <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect paddingZero"
+              for="<%= x._id %>">
+              <li class="mdl-menu__item paddingZero"><i class="material-icons parentWidth indent15">flag</i></li>
+              <% if (currentUser && currentUser._id.equals(x.userid)) { %>
+              <li class="mdl-menu__item paddingZero">
+                <form class='parentWidth' initial action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>/edit" type="submit" >
+                  <button class=' parentWidth indent15'>
+                    Edit
+                  </button>
+                </form>
+              </li>
+              <li class="mdl-menu__item paddingZero">
+                <form  class='parentWidth' action="/campgrounds/<%= campground.id %>/comments/<%= x._id %>?_method=DELETE" method="POST">
+                  <button class=' parentWidth indent15'>
+                    Delete
+                  </button>
+                </form>
+              </li>
+                <% } %>
+            </ul>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+
+        <form action="/campgrounds/<%= campground.id %>/comments/new">
+          <button class="mdl-button mdl-js-button mdl-button--raised" type="submit" >
+            Add comment
+          </button>
+        </form>
+
+
+      </div>
+
+
+      <% include ../partials/footer %>

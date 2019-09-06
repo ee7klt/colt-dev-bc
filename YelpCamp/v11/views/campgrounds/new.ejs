@@ -1,0 +1,18 @@
+<% include ../partials/header %>
+
+
+
+  <div class='container'>
+
+<div id="addCamp">
+  <h2>Create a New Campground</h2>
+  <form action="/campgrounds" method="POST">
+    <input placeholder="Campground Name" name="camp" type="text" />
+    <input placeholder="Image" name="image" type="text" />
+    <input placeholder="Description" name="desc" type="text" />
+    <input type="submit" value="Submit!"/>
+  </form>
+</div>
+</div>
+<script src="/script.js"></script>
+</body>
