@@ -68,3 +68,13 @@ Contact
     <% if (currentUser) { %>
 <p> Logged in as <%= currentUser.username %></p>
 <% } %>
+  <% if (success != '') { %>
+<div class='flash'>
+<p><%= success %></p>
+</div>
+<% } %>
+<% if (error != '') { %>
+<div class='flash'>
+<p><%= error %></p>
+</div>
+<% } %>

@@ -356,3 +356,8 @@ padding: 10px;
     padding:0;
 
 }
+
+.flash {
+  position: relative;
+  border: 1px red solid;
+}
